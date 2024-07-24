@@ -8,31 +8,31 @@ datasource db {
 }
 
 model User {
-  id         String    @id @default(uuid())
-  email      String
-  name       String
-  bookings   Booking[]
-  created_at DateTime  @default(now())
-  update_at  DateTime  @updatedAt
+  id        String    @id @default(uuid())
+  email     String
+  name      String
+  bookings  Booking[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Barbershop {
-  id          String               @id @default(uuid())
+  id          String              @id @default(uuid())
   name        String
   address     String
   phones      String[]
   description String
-  image_url   String
-  created_at  DateTime             @default(now())
-  update_at   DateTime             @updatedAt
-  services    BarbershopServices[]
+  imageUrl    String
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  services    BarbershopService[]
 }
 
-model BarbershopServices {
+model BarbershopService {
   id           String     @id @default(uuid())
   name         String
   description  String
-  image_url    String
+  imageUrl     String
   price        Decimal    @db.Decimal(10, 2)
   barbershopId String
   barbershop   Barbershop @relation(fields: [barbershopId], references: [id])
@@ -40,12 +40,12 @@ model BarbershopServices {
 }
 
 model Booking {
-  id         String             @id @default(uuid())
-  userId     String
-  user       User               @relation(fields: [userId], references: [id])
-  serviceId  String
-  service    BarbershopServices @relation(fields: [serviceId], references: [id])
-  date       DateTime
-  created_at DateTime           @default(now())
-  update_at  DateTime           @updatedAt
+  id        String            @id @default(uuid())
+  userId    String
+  user      User              @relation(fields: [userId], references: [id])
+  serviceId String
+  service   BarbershopService @relation(fields: [serviceId], references: [id])
+  date      DateTime
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
 }
