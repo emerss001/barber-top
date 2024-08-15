@@ -122,9 +122,11 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
       })
       handleBookingSheetOpenChange()
       toast.success("Reserva criada com sucesso!")
-    } catch (error) {
-      console.log(error)
-      toast.error("Erro ao criar reserva")
+    } catch (error: any) {
+      if (error.message === "appointment already exists") {
+        toast.error("Você já reservou este serviço nesta data.")
+      }
+      console.log({ message: error.message })
     }
   }
 
