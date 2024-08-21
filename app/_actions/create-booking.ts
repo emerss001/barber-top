@@ -50,4 +50,5 @@ export const createBooking = async (params: createBookingsParams) => {
   })
 
   revalidatePath("barbershops/[id]")
+  revalidatePath("/bookings")
 }
