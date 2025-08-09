@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Barber Top
 
-## Getting Started
+Aplicação web para agendamento em barbearias: encontre barbearias, visualize serviços e faça reservas online de forma simples.
 
-First, run the development server:
+**Produção**: [barber-top-blue.vercel.app](https://barber-top-blue.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Funcionalidades
+
+- **Explorar barbearias**: listagem com imagem, endereço e telefones.
+- **Detalhes da barbearia**: descrição, serviços disponíveis e preços.
+- **Agendamentos**: criar e listar reservas; cancelar quando aplicável.
+- **Autenticação**: login com Google via NextAuth.
+- **Busca**: filtro por nome/palavra-chave.
+- **UI responsiva**: componentes acessíveis com Radix UI e Tailwind.
+
+### Tecnologias
+
+- **Next.js 14 (App Router)**, **React 18** e **TypeScript**
+- **Tailwind CSS** + Radix UI
+- **Prisma** com **PostgreSQL**
+- **NextAuth** (Google OAuth)
+
+### Estrutura de pastas
+
+```txt
+app/
+  _actions/           # ações server para criar/deletar/listar agendamentos
+  _components/        # componentes UI (itens de barbearia, serviço, etc.)
+    ui/               # componentes base (button, card, dialog, form...)
+  _constants/         # constantes de busca e afins
+  _lib/               # auth, prisma client e utilitários
+  _providers/         # provedores (ex.: AuthProvider)
+  api/
+    auth/[...nextauth]/route.ts  # rota NextAuth
+  barbershops/        # páginas de listagem e detalhe de barbearias
+  bookings/           # página de reservas do usuário
+  layout.tsx          # layout raiz
+  page.tsx            # página inicial
+
+prisma/
+  schema.prisma       # schema do banco (User, Barbershop, Service, Booking)
+  migrations/         # migrações
+  seed.ts             # dados de exemplo
+
+public/               # assets estáticos
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
